@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  background-color: #e6df7e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.escenario {
+  position: relative;
+  width: 750px;
+  height: 500px;
+  overflow: hidden;
+  border: 3px solid #5b3b1e;
+  border-radius: 12px;
+}
+
+/* Fondo */
+.fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* HUD (Contadores) */
+.hud {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+
+.contador {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.icono {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+/* OBJETOS CLICKEABLES */
+.objeto {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 5;
+}
+
+.objeto:hover {
+  transform: scale(1.15);
+}
+
+/* Posiciones de los objetos */
+.flor {
+  width: 50px;
+  bottom: 80px;
+  left: 250px;
+}
+
+.hoja {
+  width: 60px;
+  top: 220px;
+  left: 450px;
+}
+
+.caracol {
+  width: 90px;
+  bottom: 80px;
+  left: 390px;
+}
+
+.piedras {
+  width: 100px;
+  bottom: 40px;
+  right: 10px;
+  position: absolute;
+}
+
+/* ANIMABLES */
+.animable {
+  position: absolute;
+  z-index: 2;
+}
+
+.mariposa {
+  width: 70px;
+  top: 60px;
+  left: 100px;
+  animation: volar 4s infinite ease-in-out alternate;
+}
+
+@keyframes volar {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-30px) rotate(15deg);
+  }
+}
+
+.mariquita {
+  width: 40px;
+  bottom: 60px;
+  left: 100px; /* cambiado de right: 600px para que esté dentro del área */
+  animation: caminar 5s infinite alternate;
+}
+
+@keyframes caminar {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(80px);
+  }
+}
