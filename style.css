@@ -5,6 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
 .escenario {
@@ -14,9 +15,9 @@ body {
   overflow: hidden;
   border: 3px solid #5b3b1e;
   border-radius: 12px;
+  background: #0000; /* si falta fondo, el img .fondo lo cubrirá */
 }
 
-/* Fondo */
 .fondo {
   position: absolute;
   width: 100%;
@@ -25,7 +26,6 @@ body {
   z-index: 0;
 }
 
-/* HUD (Contadores) */
 .hud {
   position: absolute;
   top: 10px;
@@ -33,7 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 10;
+  z-index: 20;
 }
 
 .contador {
@@ -42,59 +42,56 @@ body {
   background: rgba(255, 255, 255, 0.4);
   padding: 5px 10px;
   border-radius: 20px;
-  font-family: Arial, sans-serif;
   font-weight: bold;
 }
 
 .icono {
   width: 25px;
   height: 25px;
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
-/* OBJETOS CLICKEABLES */
 .objeto {
   position: absolute;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  z-index: 5;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  z-index: 10;
+  user-select: none;
 }
 
 .objeto:hover {
-  transform: scale(1.15);
+  transform: scale(1.12);
 }
 
-/* Posiciones de los objetos */
 .flor {
   width: 50px;
-  bottom: 80px;
-  left: 250px;
 }
 
-.hoja {
-  width: 60px;
-  top: 220px;
-  left: 450px;
-}
+.flor1 { bottom: 80px; left: 120px; }
+.flor2 { bottom: 90px; left: 250px; }
+.flor3 { bottom: 85px; left: 380px; }
 
+.muñeco {
+  width: 70px;
+}
+.muneco1 { top: 220px; left: 420px; }
+.muneco2 { top: 200px; left: 520px; }
+.muneco3 { top: 210px; left: 600px; }
+
+/* Caracol y piedras */
 .caracol {
   width: 90px;
-  bottom: 80px;
-  left: 390px;
+  bottom: 40px;
+  left: 30px;
 }
-
 .piedras {
   width: 100px;
-  bottom: 40px;
+  bottom: 10px;
   right: 10px;
-  position: absolute;
 }
 
-/* ANIMABLES */
-.animable {
-  position: absolute;
-  z-index: 2;
-}
+/* Animables */
+.animable { position: absolute; z-index: 5; pointer-events: none; }
 
 .mariposa {
   width: 70px;
@@ -104,26 +101,44 @@ body {
 }
 
 @keyframes volar {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-30px) rotate(15deg);
-  }
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-30px) rotate(15deg); }
 }
 
-.mariquita {
-  width: 40px;
-  bottom: 60px;
-  left: 100px; /* cambiado de right: 600px para que esté dentro del área */
-  animation: caminar 5s infinite alternate;
+.cabeza {
+  width: 90px;
+  bottom: 15px;
+  right: 410px;
+  animation: caminar 3s infinite alternate;
 }
 
 @keyframes caminar {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(80px); }
+}
+
+
+
+
+.saltar {
+  animation: salto 0.5s ease forwards;
+}
+@keyframes salto {
+  0% { transform: translateY(0); opacity: 1; }
+  30% { transform: translateY(-60px); }
+  100% { transform: translateY(0); opacity: 0; }
+
+}
+.moverMariposa {
+  animation: moverMariposa 2s linear infinite alternate;
+}
+
+@keyframes moverMariposa {
   0% {
-    transform: translateX(0);
+    trasform: translateY(0); 
   }
   100% {
-    transform: translateX(80px);
+    transform: translateY(-40px); 
   }
+
 }
