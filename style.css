@@ -1,21 +1,22 @@
 body {
   margin: 0;
-  background-color: #e6df7e;
+  background-color: #d6d6d6;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  gap: 40px;
+  padding: 30px 0;
   font-family: Arial, sans-serif;
 }
+
 
 .escenario {
   position: relative;
   width: 750px;
   height: 500px;
-  overflow: hidden;
-  border: 3px solid #5b3b1e;
+  border: 3px solid #0c0c0c;
   border-radius: 12px;
-  background: #0000; /* si falta fondo, el img .fondo lo cubrirá */
+  overflow: hidden;
 }
 
 .fondo {
@@ -23,7 +24,21 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
+}
+
+.contenedor-escenarios {
+  width: 50px;
+  height: 50px;
+
+}
+
+.button {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 40%;
+  cursor: pointer;
+  background-color: powderblue;
 }
 
 .hud {
@@ -33,65 +48,47 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 20;
+  z-index: 10;
 }
-
 .contador {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 5px 10px;
+  background: rgba(255,255,255,0.6);
   border-radius: 20px;
-  font-weight: bold;
+  padding: 5px 10px;
 }
+.icono { width: 25px; height: 25px; margin-right: 8px; }
 
-.icono {
-  width: 25px;
-  height: 25px;
-  margin-right: 8px;
-}
 
 .objeto {
   position: absolute;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.3s ease;
-  z-index: 10;
   user-select: none;
+  z-index: 5;
+}
+.objeto:hover { transform: scale(1.12); }
+
+
+.animable {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
 }
 
-.objeto:hover {
-  transform: scale(1.12);
-}
+/* === ESCENARIO 1: BOSQUE === */
+.escenario1 .flor { width: 55px; }
+.flor1 { bottom: 80px; left: 130px; }
+.flor2 { bottom: 90px; left: 260px; }
+.flor3 { bottom: 70px; left: 400px; }
 
-.flor {
-  width: 50px;
-}
-
-.flor1 { bottom: 80px; left: 120px; }
-.flor2 { bottom: 90px; left: 250px; }
-.flor3 { bottom: 85px; left: 380px; }
-
-.muñeco {
-  width: 70px;
-}
+.muñeco { width: 70px; }
 .muneco1 { top: 220px; left: 420px; }
-.muneco2 { top: 200px; left: 520px; }
-.muneco3 { top: 210px; left: 600px; }
+.muneco2 { top: 210px; left: 540px; }
+.muneco3 { top: 230px; left: 600px; }
 
-/* Caracol y piedras */
-.caracol {
-  width: 90px;
-  bottom: 40px;
-  left: 30px;
-}
-.piedras {
-  width: 100px;
-  bottom: 10px;
-  right: 10px;
-}
-
-/* Animables */
-.animable { position: absolute; z-index: 5; pointer-events: none; }
+.caracol { width: 90px; bottom: 50px; left: 40px; }
+.piedras { width: 100px; bottom: 15px; right: 10px; }
 
 .mariposa {
   width: 70px;
@@ -99,46 +96,83 @@ body {
   left: 100px;
   animation: volar 4s infinite ease-in-out alternate;
 }
-
 @keyframes volar {
   0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-30px) rotate(15deg); }
+  100% { transform: translateY(-25px) rotate(10deg); }
 }
 
 .cabeza {
   width: 90px;
-  bottom: 15px;
+  bottom: 40px;
   right: 410px;
   animation: caminar 3s infinite alternate;
 }
-
 @keyframes caminar {
   0% { transform: translateX(0); }
-  100% { transform: translateX(80px); }
+  100% { transform: translateX(70px); }
+}
+
+/* === ESCENARIO 2: PSIQUIÁTRICO === */
+.escenario2 .arma { width: 60px; }
+.arma1 { bottom: 80px; left: 120px; }
+.arma2 { bottom: 90px; left: 250px; }
+.arma3 { bottom: 100px; left: 380px; }
+.arma4 { bottom: 70px; left: 500px; }
+
+.personaje1 { width: 280px; top: 220px; left: 540px; }
+.dedos { width: 120px; top: 400px; left: 150px; }
+
+.camara {
+  width: 80px;
+  top: 40px;
+  right: 80px;
+  animation: girar 2s infinite linear;
+}
+@keyframes girar {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.personaje2 {
+  width: 130px;
+  bottom: 150px;
+  right: 250px;
+  animation: flotar 4s infinite ease-in-out alternate;
+}
+@keyframes flotar {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-25px); }
 }
 
 
+.escenario3 .silla { width: 60px; }
+.silla1 { bottom: 50px; left: 120px; }
+.silla2 { bottom: 70px; left: 250px; }
+.silla3 { bottom: 80px; left: 380px; }
+.silla4 { bottom: 60px; left: 520px; }
 
+.luchador1 { width: 119px; top: 200px; left: 80px; }
+.luchador2 { width: 120px; top: 260px; left: 600px; }
 
-.saltar {
-  animation: salto 0.5s ease forwards;
+.luchador3 {
+  width: 220px;
+  bottom: 300px;
+  left: 300px;
+  animation: saltar 2.5s infinite ease-in-out;
 }
-@keyframes salto {
-  0% { transform: translateY(0); opacity: 1; }
-  30% { transform: translateY(-60px); }
-  100% { transform: translateY(0); opacity: 0; }
-
-}
-.moverMariposa {
-  animation: moverMariposa 2s linear infinite alternate;
+@keyframes saltar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
 }
 
-@keyframes moverMariposa {
-  0% {
-    trasform: translateY(0); 
-  }
-  100% {
-    transform: translateY(-40px); 
-  }
-
+.escalera {
+  width: 400px;
+  right: 40px;
+  bottom: 90px;
+  animation: mover 2s infinite alternate;
+}
+@keyframes mover {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(10deg); }
 }
