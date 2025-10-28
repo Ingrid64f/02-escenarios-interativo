@@ -176,3 +176,65 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(10deg); }
 }
+/* === GALERÍA === */
+.contenedor-escenarios {
+  position: relative;
+  width: 750px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.galeria {
+  width: 750px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.escenario {
+  display: none;
+}
+.escenario.activo {
+  display: block;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  z-index: 100;
+  transition: background 0.3s;
+}
+
+.flecha:hover {
+  background-color: rgba(0,0,0,0.7);
+}
+
+.flecha.anterior {
+  left: -80px;
+}
+
+.flecha.siguiente {
+  right: -80px;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: #222;
+}
+
+.activa {
+  display: block;
+}
+

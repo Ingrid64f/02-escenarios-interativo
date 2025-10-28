@@ -1,37 +1,91 @@
-// Variables contadoras iniciales
-let florCount = 0;
-let hojasCount = 0;
+// === Funciones generales ===
+function desaparecerYReaparecer(el, tiempo = 700) {
+  el.style.visibility = "hidden";
+  setTimeout(() => (el.style.visibility = "visible"), tiempo);
+}
 
-// Referencias a los elementos del HUD
-const florContador = document.getElementById('florCount');
-const hojasContador = document.getElementById('hojasCount');
+function aplicarContador(selector, contadorId) {
+  const elementos = document.querySelectorAll(selector);
+  const contadorEl = document.getElementById(contadorId);
+  let total = 0;
 
-// Referencias a los objetos clickeables
-const florObjeto = document.querySelector('.flor');
-const hojaObjeto = document.querySelector('.hoja');
+  elementos.forEach((el) => {
+    let clics = 0;
+    el.addEventListener("click", () => {
+      if (clics >= 3) return;
+      clics++;
+      desaparecerYReaparecer(el);
+      total++;
+      if (contadorEl) contadorEl.textContent = total;
+      if (clics >= 3) {
+        el.style.opacity = "0.5";
+        el.style.pointerEvents = "none";
+      }
+    });
+  });
+}
 
-// Evento para la flor
-florObjeto.addEventListener('click', () => {
-  florCount++;
-  florContador.textContent = florCount;
+aplicarContador(".objeto.flor", "florCount");
+aplicarContador(".objeto.muñeco", "muñecoCount");
+aplicarContador(".objeto.arma", "armaCount");
+aplicarContador(".objeto.silla", "sillaCount");
 
-  // Pequeña animación visual
-  florObjeto.style.transform = 'scale(1.3)';
-  setTimeout(() => {
-    florObjeto.style.transform = 'scale(1)';
-  }, 200);
+
+const alertas = [
+  { selector: ".objeto.caracol", mensaje: "¡El caracol se esconde en su caparazón!" },
+  { selector: ".objeto.piedras", mensaje: "¡Has tocado las piedras del bosque!" },
+  { selector: ".objeto.personaje1", mensaje: "El personaje te observa desde la sombra..." },
+  { selector: ".objeto.dedos", mensaje: "Has encontrado los dedos del mal..." },
+  { selector: ".objeto.luchador1", mensaje: "¡El luchador entra en acción, corre!" },
+  { selector: ".objeto.luchador2", mensaje: "¡El segundo luchador se prepara para luchar!" },
+];
+
+alertas.forEach(({ selector, mensaje }) => {
+  const el = document.querySelector(selector);
+  if (el) el.addEventListener("click", () => alert(mensaje));
 });
 
-// Evento para las hojas
-hojaObjeto.addEventListener('click', () => {
-  hojasCount++;
-  hojasContador.textContent = hojasCount;
-
-  // Pequeña animación visual
-  hojaObjeto.style.transform = 'scale(1.3)';
-  setTimeout(() => {
-    hojaObjeto.style.transform = 'scale(1)';
-  }, 200);
+/*flechaSiguiente.addEventListener('click', () => {
+  escenarioActual = (escenarioActual - 1 + escenario.length) % escenarios.length;
+  mostrarEscenario(escenarioActual);
 });
+
+flechaSiguiente.addEventListener('click', () => {
+  escenarioActual = (escenarioActual + 1) % escenario.length;
+  mostrarEscenario(escenarioActual);
+});
+*/
+
+/* carrusel */
+
+const escenas = document.querySelector(".escenas")
+const anterior = document.querySelector(".anterior")
+const siguiente = document.querySelector(".siguiente")
+const miniaturas = document.querySelector(".miniaturas")
+let indice = 0
+
+console.log(escenas)
+console.log(anterior)
+console.log(siguiente)
+console.log(miniaturas)
+
+ //funciones
+
+function mostrarEscena(i){
+  for (let j = 0; j < escenas.length; j++) {
+    escenas[j].classList.remove("activa")
+  }
+  escenas[i].classList.add("activa")
+}
+indice = i
+
+// para mostrar la pantalla 1 al inciar
+
+
+
+
+
+
+
 
 
