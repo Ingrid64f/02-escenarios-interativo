@@ -10,15 +10,6 @@ body {
 }
 
 
-.escenario {
-  position: relative;
-  width: 750px;
-  height: 500px;
-  border: 3px solid #222;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
 .fondo {
   position: absolute;
   width: 100%;
@@ -162,3 +153,83 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(10deg); }
 }
+
+/* === GALERÍA === */
+.contenedor-escenarios {
+  position: relative;
+  width: 750px;
+  height: 500px;
+  overflow: hidden; 
+  border: 4px solid #000; 
+  box-sizing: border-box;
+}
+
+.galeria {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ESCENARIOS */
+.escenario {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  box-sizing: border-box;
+}
+
+.escenario.activo {
+  display: block;
+}
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  z-index: 300; /* por encima de todo */
+  transition: background 0.2s;
+}
+
+.flecha.anterior { left: 8px; }
+.flecha.siguiente { right: 8px; }
+
+
+.titulo {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: #222;
+}
+
+/* MINIATURAS */
+.miniaturas {
+  position: absolute;
+  bottom: 8px;
+  width: calc(100% - 20px);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 10px;
+  z-index: 200;
+  pointer-events: none; 
+}
+.miniaturas .miniatura {
+  pointer-events: auto;
+  width: 70px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: 6px;
+}
+.miniatura.activaMini { border: 2px solid rgb(255,166,0); opacity: 1; }
