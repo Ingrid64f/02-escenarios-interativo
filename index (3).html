@@ -2,24 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Más allá del bosque</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1 class="titulo">Galería de Escenarios</h1>
-
 <div class="contenedor-escenarios">
   <button class="flecha anterior">&#10094;</button>
+
   <div class="galeria">
 
-    <div class="escenas">
-
+    <!-- MINIATURAS -->
+    <div class="miniaturas">
+      <img src="fondo.jpg" class="miniatura" data-index="0">
+      <img src="Prison block.jpeg" class="miniatura" data-index="1">
+      <img src="ring.png" class="miniatura" data-index="2">
     </div>
 
+    <!-- ESCENARIO 1 -->
     <div class="escenario escenario1 activo">
-      <img src="fondo (1).jpg" alt="Fondo del bosque" class="fondo">
+      <img src="fondo.jpg" alt="Fondo del bosque" class="fondo">
+      
       <div class="hud">
         <div class="contador flores">
           <img src="flor.png" alt="Flor icono" class="icono">
@@ -31,13 +35,15 @@
         </div>
       </div>
 
+      <!-- Animaciones -->
       <img src="mariposa.png" alt="Mariposa animada" class="mariposa animable">
       <img src="cabeza.png" alt="Cabeza animada" class="cabeza animable">
 
+      <!-- Clickeables -->
       <img src="flor.png" alt="Flor 1" class="objeto flor flor1">
       <img src="flor.png" alt="Flor 2" class="objeto flor flor2">
       <img src="flor.png" alt="Flor 3" class="objeto flor flor3">
-
+      
       <img src="muñeco.png" alt="Muñeco 1" class="objeto muñeco muneco1">
       <img src="muñeco.png" alt="Muñeco 2" class="objeto muñeco muneco2">
       <img src="muñeco.png" alt="Muñeco 3" class="objeto muñeco muneco3">
@@ -46,9 +52,10 @@
       <img src="piedras.png" alt="Piedras" class="objeto piedras">
     </div>
 
-    
+    <!-- ESCENARIO 2 -->
     <div class="escenario escenario2">
       <img src="Prison block.jpeg" alt="Fondo del psiquiátrico" class="fondo">
+
       <div class="hud">
         <div class="contador armas">
           <img src="arma.png" alt="Arma icono" class="icono">
@@ -56,21 +63,28 @@
         </div>
       </div>
 
+     
       <img src="camara.png" alt="Cámara animada" class="camara animable">
       <img src="personaje2.png" alt="Personaje animado" class="personaje2 animable">
 
+      
       <img src="arma.png" alt="Arma 1" class="objeto arma arma1">
       <img src="arma.png" alt="Arma 2" class="objeto arma arma2">
       <img src="arma.png" alt="Arma 3" class="objeto arma arma3">
       <img src="arma.png" alt="Arma 4" class="objeto arma arma4">
+      <audio id="snDePuñalada" src="Sonido de Puñalada-2.mp3"></audio>
 
       <img src="personaje1.png" alt="Personaje" class="objeto personaje1">
+      <audio id="snDeGrito" src="Risa de Hombre -2.mp3"></audio>
+
       <img src="dedos.png" alt="Dedos" class="objeto dedos">
+      <audio id="snDeDedos" src="Hueso-Roto-Sonido-2.mp3"></audio>
     </div>
 
-    
+    <!-- ESCENARIO 3 -->
     <div class="escenario escenario3">
       <img src="ring.png" alt="Fondo del ring" class="fondo">
+
       <div class="hud">
         <div class="contador sillas">
           <img src="silla.png" alt="Silla icono" class="icono">
@@ -78,9 +92,11 @@
         </div>
       </div>
 
+     
       <img src="luchador 3.png" alt="Luchador animado" class="luchador3 animable">
       <img src="escalera.png" alt="Escalera animada" class="escalera animable">
 
+     
       <img src="silla.png" alt="Silla 1" class="objeto silla silla1">
       <img src="silla.png" alt="Silla 2" class="objeto silla silla2">
       <img src="silla.png" alt="Silla 3" class="objeto silla silla3">
@@ -89,8 +105,11 @@
       <img src="luchador 1.png" alt="Luchador 1" class="objeto luchador luchador1">
       <img src="luchador 2.png" alt="Luchador 2" class="objeto luchador luchador2">
     </div>
+
   </div>
+
   <button class="flecha siguiente">&#10095;</button>
+
 </div>
 
 <script src="app.js"></script>

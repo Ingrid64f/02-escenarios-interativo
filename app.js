@@ -1,4 +1,4 @@
-// === Funciones generales ===
+
 function desaparecerYReaparecer(el, tiempo = 700) {
   el.style.visibility = "hidden";
   setTimeout(() => (el.style.visibility = "visible"), tiempo);
@@ -7,6 +7,9 @@ function desaparecerYReaparecer(el, tiempo = 700) {
 function aplicarContador(selector, contadorId) {
   const elementos = document.querySelectorAll(selector);
   const contadorEl = document.getElementById(contadorId);
+  const snDePuñalada = document.getElementById("snDePuñalada");
+  const snDeGrito = document.getElementById("snDeGrito");
+  const snDeDedos = document.getElementById("snDeDedos");
   let total = 0;
 
   elementos.forEach((el) => {
@@ -20,6 +23,9 @@ function aplicarContador(selector, contadorId) {
       if (clics >= 3) {
         el.style.opacity = "0.5";
         el.style.pointerEvents = "none";
+        snDePuñalada.play();
+        snDeGrito.play();
+        snDeDedos.play();
       }
     });
   });
@@ -37,7 +43,7 @@ const alertas = [
   { selector: ".objeto.personaje1", mensaje: "El personaje te observa desde la sombra..." },
   { selector: ".objeto.dedos", mensaje: "Has encontrado los dedos del mal..." },
   { selector: ".objeto.luchador1", mensaje: "¡El luchador entra en acción, corre!" },
-  { selector: ".objeto.luchador2", mensaje: "¡El segundo luchador se prepara para luchar!" },
+  { selector: ".objeto.luchador2", mensaje: "¡El segundo luchador se prepara para atacar wio wio!" },
 ];
 
 alertas.forEach(({ selector, mensaje }) => {
@@ -45,47 +51,54 @@ alertas.forEach(({ selector, mensaje }) => {
   if (el) el.addEventListener("click", () => alert(mensaje));
 });
 
-/*flechaSiguiente.addEventListener('click', () => {
-  escenarioActual = (escenarioActual - 1 + escenario.length) % escenarios.length;
-  mostrarEscenario(escenarioActual);
-});
+/* ================= CARRUSEL ================= */
 
-flechaSiguiente.addEventListener('click', () => {
-  escenarioActual = (escenarioActual + 1) % escenario.length;
-  mostrarEscenario(escenarioActual);
-});
-*/
+const escenarios = document.querySelectorAll(".escenario");
+const anterior = document.querySelector(".flecha.anterior");
+const siguiente = document.querySelector(".flecha.siguiente");
+const miniaturas = document.querySelectorAll(".miniatura");
 
-/* carrusel */
+let indice = 0;
 
-const escenas = document.querySelector(".escenas")
-const anterior = document.querySelector(".anterior")
-const siguiente = document.querySelector(".siguiente")
-const miniaturas = document.querySelector(".miniaturas")
-let indice = 0
 
-console.log(escenas)
-console.log(anterior)
-console.log(siguiente)
-console.log(miniaturas)
+if (!escenarios || escenarios.length === 0) {
+  console.error("No se encontraron elementos con la clase .escenario. Revisa el HTML.");
+} else {
 
- //funciones
+  function mostrarEscena(i) {
+  
+    if (i < 0) i = escenarios.length - 1;
+    if (i >= escenarios.length) i = 0;
 
-function mostrarEscena(i){
-  for (let j = 0; j < escenas.length; j++) {
-    escenas[j].classList.remove("activa")
+   
+    escenarios.forEach(e => e.classList.remove("activo"));
+    miniaturas.forEach(m => m.classList.remove("activaMini"));
+
+
+    escenarios[i].classList.add("activo");
+    if (miniaturas[i]) miniaturas[i].classList.add("activaMini");
+
+    indice = i;
   }
-  escenas[i].classList.add("activa")
+
+  // Eventos botones 
+  if (siguiente) {
+    siguiente.addEventListener("click", () => mostrarEscena(indice + 1));
+  } else {
+    console.warn("Botón .flecha.siguiente no encontrado.");
+  }
+
+  if (anterior) {
+    anterior.addEventListener("click", () => mostrarEscena(indice - 1));
+  } else {
+    console.warn("Botón .flecha.anterior no encontrado.");
+  }
+
+  // Miniaturas
+  miniaturas.forEach((m, i) => {
+    m.addEventListener("click", () => mostrarEscena(i));
+  });
+
+  // Mostrar primero
+  mostrarEscena(0);
 }
-indice = i
-
-// para mostrar la pantalla 1 al inciar
-
-
-
-
-
-
-
-
-
