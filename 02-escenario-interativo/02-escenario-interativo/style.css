@@ -1,0 +1,235 @@
+body {
+  margin: 0;
+  background-color: #d6d6d6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 30px 0;
+  font-family: Arial, sans-serif;
+}
+
+
+.fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.hud {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+.contador {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.6);
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+.icono { width: 25px; height: 25px; margin-right: 8px; }
+
+
+.objeto {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  user-select: none;
+  z-index: 5;
+}
+.objeto:hover { transform: scale(1.12); }
+
+
+.animable {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* === ESCENARIO 1: BOSQUE === */
+.escenario1 .flor { width: 55px; }
+.flor1 { bottom: 80px; left: 130px; }
+.flor2 { bottom: 90px; left: 260px; }
+.flor3 { bottom: 70px; left: 400px; }
+
+.muñeco { width: 70px; }
+.muneco1 { top: 220px; left: 420px; }
+.muneco2 { top: 210px; left: 540px; }
+.muneco3 { top: 230px; left: 600px; }
+
+.caracol { width: 90px; bottom: 50px; left: 40px; }
+.piedras { width: 100px; bottom: 15px; right: 10px; }
+
+.mariposa {
+  width: 70px;
+  top: 60px;
+  left: 100px;
+  animation: volar 4s infinite ease-in-out alternate;
+}
+@keyframes volar {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-25px) rotate(10deg); }
+}
+
+.cabeza {
+  width: 90px;
+  bottom: 40px;
+  right: 410px;
+  animation: caminar 3s infinite alternate;
+}
+@keyframes caminar {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(70px); }
+}
+
+/* === ESCENARIO 2: PSIQUIÁTRICO === */
+.escenario2 .arma { width: 60px; }
+.arma1 { bottom: 80px; left: 120px; }
+.arma2 { bottom: 90px; left: 250px; }
+.arma3 { bottom: 100px; left: 380px; }
+.arma4 { bottom: 70px; left: 500px; }
+
+.personaje1 { width: 280px; top: 220px; left: 540px; }
+.dedos { width: 120px; top: 400px; left: 150px; }
+
+.camara {
+  width: 80px;
+  top: 40px;
+  right: 80px;
+  animation: girar 2s infinite linear;
+}
+@keyframes girar {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.personaje2 {
+  width: 130px;
+  bottom: 150px;
+  right: 250px;
+  animation: flotar 4s infinite ease-in-out alternate;
+}
+@keyframes flotar {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-25px); }
+}
+
+
+.escenario3 .silla { width: 60px; }
+.silla1 { bottom: 50px; left: 120px; }
+.silla2 { bottom: 70px; left: 250px; }
+.silla3 { bottom: 80px; left: 380px; }
+.silla4 { bottom: 60px; left: 520px; }
+
+.luchador1 { width: 119px; top: 200px; left: 80px; }
+.luchador2 { width: 120px; top: 260px; left: 600px; }
+
+.luchador3 {
+  width: 220px;
+  bottom: 300px;
+  left: 300px;
+  animation: saltar 2.5s infinite ease-in-out;
+}
+@keyframes saltar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+
+.escalera {
+  width: 400px;
+  right: 40px;
+  bottom: 90px;
+  animation: mover 2s infinite alternate;
+}
+@keyframes mover {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(10deg); }
+}
+
+/* === GALERÍA === */
+.contenedor-escenarios {
+  position: relative;
+  width: 750px;
+  height: 500px;
+  overflow: hidden; 
+  border: 4px solid #000; 
+  box-sizing: border-box;
+}
+
+.galeria {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ESCENARIOS */
+.escenario {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  box-sizing: border-box;
+}
+
+.escenario.activo {
+  display: block;
+}
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  z-index: 300; /* por encima de todo */
+  transition: background 0.2s;
+}
+
+.flecha.anterior { left: 8px; }
+.flecha.siguiente { right: 8px; }
+
+
+.titulo {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: #222;
+}
+
+/* MINIATURAS */
+.miniaturas {
+  position: absolute;
+  bottom: 8px;
+  width: calc(100% - 20px);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 10px;
+  z-index: 200;
+  pointer-events: none; 
+}
+.miniaturas .miniatura {
+  pointer-events: auto;
+  width: 70px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: 6px;
+}
+.miniatura.activaMini { border: 2px solid rgb(255,166,0); opacity: 1; }
